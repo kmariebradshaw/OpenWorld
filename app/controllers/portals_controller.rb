@@ -5,6 +5,8 @@ class PortalsController < ApplicationController
   end
   def show
     @portal = Portal.find(params[:id])
+    @comment = Comment.new 
+    @comments = @portal.comments
   end
   def new 
   	@portal = Portal.new
