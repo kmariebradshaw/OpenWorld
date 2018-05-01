@@ -52,3 +52,25 @@ ul {
 }
 
 nav ul li img {width: 25px;}
+
+.alert { 
+    color: maroon;
+    font-size: 8pt;
+ }
+
+ .form_only {
+    width: fit-content;
+    margin: 0 auto;
+    input {
+    font-size: 14pt;
+    padding: 5px;
+    }
+    .field { margin: 5px 0; }
+    h2 { margin-bottom: 0; }
+    p { margin-top: 0; }
+    .actions { margin-bottom: 15px; }
+ }
+
+ .small { font-size: 8pt; }
+
+ .notice { font-size: 8pt; text-align: center; }
