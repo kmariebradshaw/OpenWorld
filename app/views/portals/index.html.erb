@@ -1,0 +1,51 @@
+<% @portals.each do |portal| %>
+	<% if portal.id == 1 %>
+		<ul id="origin">
+	<% else %>
+		<ul class="">
+	<% end %>
+			<li><h1><%= link_to portal.title, portal_path(portal) %></h1></li>
+			<li class="themes">
+				<!-- for themes in portal.themes, little 100% border divs with color coded nonsense -->
+			</li>
+			<li><p><%= portal.description.first(80)%>...</p></li>
+			<li class="author"><%= portal.user.email %></li>
+			<% if portal.user.id == current_user.id %>
+				<li class="user_links"><%= link_to "edit", edit_portal_path(portal) %> - <%= link_to 'delete', 
+             portal_path(portal), 
+                         method: :delete, 
+                         data: { confirm: 'Do you think this is a joke? Cause I will delete this and it will not come back.' } %> - <%= link_to 'add', "/portals/new?origin=#{portal.id}" %>
+
+			<% end %>
+
+		</ul>
+<% end %>
+
+
+<ul>
+	<li>Origin
+		<ul>
+			<li>offshoot numero uno</li>
+			<li> off shoot 2
+				<ul>
+					<li>off shoot of off shoot</li>
+				</ul>
+			</li>
+		</ul>
+	</li>
+</ul>
+
+<!-- pull out into partial -->
+<!-- next uls -->
+<style>
+	ul { 
+	 	list-style: none;
+	 	display: inline-block;
+	 	padding: 25px;
+	 	width: 150px;
+	 }
+
+
+	 .author { font-size: 9pt; }
+	 .user_links { margin-top: 10px; }
+</style>
