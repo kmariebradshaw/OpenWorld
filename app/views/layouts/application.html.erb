@@ -3,7 +3,7 @@
   <head>
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800|Oswald:400,600" rel="stylesheet">
 
-    <title>Open World</title>
+    <title>The Vedlt</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -24,8 +24,11 @@
       <% end %>
       </ul>
     </nav>
+    <div class="page-wrapper">
   	  <p class="notice"><%= notice %></p>
        <p class="alert"><%= alert %></p>
+
     <%= yield %>
+  </div>
   </body>
 </html>

@@ -11,12 +11,11 @@ h1 {
     width: 49%;
     box-sizing: border-box;
     display: inline-block;
-    padding: 50px;
+    padding: 10px;
+    vertical-align: top;
 }
 
 #mceu_33 { display: none !important; }
-
-iframe { height: 300px !important; }
 
 #mceu_13 { width: 90% !important; margin: 0 auto;}
 
@@ -76,3 +75,33 @@ nav ul li img {width: 25px;}
  .small { font-size: 8pt; }
 
  .notice { font-size: 8pt; text-align: center; }
+
+ .page-wrapper {
+    min-width: 320px;
+    width: 90%; 
+    max-width: 1366px;
+    margin: 0 auto;
+ }
+
+ .comment { 
+    width: 95%;
+    height: 50px;
+}
+
+.delete-comment {
+    float: right;
+    margin-right: 20px;
+    a { text-decoration: none; }
+}
+
+.tags {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.portal_submit {
+    width: 90%;
+    display: inherit;
+    margin: 20px auto;
+    font-size: 20pt;
+}
