@@ -13,11 +13,14 @@
   <body>
     <nav>
       <ul>
-        <li><%= link_to image_tag("return.png"), :back, :class=>"return icons" %></li>
       <% if current_user %>
+              <li><%= link_to image_tag("return.png"), :back, :class=>"return icons" %></li>
+
      <li><%= link_to image_tag("home.png"), "/", :class=>"icons"%></li>
         <li><%= link_to image_tag("user.png"), "/users/#{current_user.id}", :class=>"icons"%></li>
         <li><%= link_to image_tag("003-new-file.png"), new_portal_path, :class=>"icons" %></li>
+        <li><%= link_to(image_tag('logout.png'), destroy_user_session_path, method: :delete) %></li>        
+
       <% end %>
       </ul>
     </nav>
