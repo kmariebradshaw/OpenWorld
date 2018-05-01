@@ -10,13 +10,21 @@ class PortalsController < ApplicationController
   end
   def new 
   	@portal = Portal.new
+    @tags = Tag.all 
   end 
   def create
     @portal = Portal.new(portal_params)
-   
-    @portal.save
+    if @portal.save 
+      params[:tag][:ids].each do |tag_id, checked|
+        if checked == "1"
+          @tagging = Tagging.new(portal_id: @portal.id, tag_id: tag_id)
+          @tagging.save
+        end
+      end 
+    end
     redirect_to '/'
   end
+
   def destroy
     @portal = Portal.find(params[:id])
     @portal.destroy
@@ -25,6 +33,14 @@ class PortalsController < ApplicationController
   def update
     @portal = Portal.find(params[:id])
     if @portal.update(portal_params)
+      @taggings = @portal.taggings
+      @taggings.destroy_all
+        params[:tags][:ids].each do |tag_id, checked|
+          if checked == "1"
+            @taggings = Tagging.new(portal_id: @portal.id, tag_id: tag_id)
+            @taggings.save
+          end
+        end
       redirect_to @portal
     else
       render 'edit'
@@ -32,6 +48,7 @@ class PortalsController < ApplicationController
   end
   def edit
     @portal = Portal.find(params[:id])
+    @tags = Tag.all 
   end 
   private
     def portal_params

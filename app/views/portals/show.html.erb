@@ -3,32 +3,79 @@
 	<p><%= link_to "edit", edit_portal_path(@portal) %> </p>
 <% end %>
 <h5><%= @portal.user.email %></h5>
-<p><%= @portal.description %></p>
+<p><%= @portal.description.html_safe %></p>
 
 
-  <% @portal.comments.each do |comment| %>
-    <p>
-      <%= comment.user.email %>
-    </p>
-    <p>
-      <%= comment.body %>
-    </p>
-    <%= link_to 'Delete Comment', 
-                         portal_comment_url(@portal, comment), 
-                         method: :delete,
-                         data: { confirm: 'Are you sure?' } %>  
-  <% end %>
-</div>
 
 
+<div class="out_of_character">
+  <h5>out of character</h5>
   <%= form_for([@portal, @portal.comments.build]) do |f| %>
     <p>
       <%= f.label :comment %><br>
-      <%= f.text_area :body %>
+      <%= f.text_area :body, rows: 5, cols: 25, :class => "tinymce" %> %>
     </p>
     <p>
-          <%= f.hidden_field :user_id, :value => current_user.id %>
-
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <%= f.hidden_field :in_character, :value => false %>
       <%= f.submit "Create Comment", :id => "save-button" %>
     </p>
   <% end %>
+  <% @portal.comments.each do |comment| %>
+    <% if comment.in_character == false %>
+    <p>
+      <%= comment.user.first_name %>
+    </p>
+    <p>
+      <%= comment.body.html_safe %>
+    </p>
+    <% if comment.user == current_user %>
+    <%= link_to 'Delete Comment', 
+                         portal_comment_url(@portal, comment), 
+                         method: :delete,
+                         data: { confirm: 'Are you sure?' } %> 
+    <% end %> 
+    <% end %>
+  <% end %>
+
+
+</div>
+
+<div class="in_character">
+  <h5> in character </h5>
+  <%= form_for([@portal, @portal.comments.build]) do |f| %>
+    <p>
+      <%= f.label :comment %><br>
+      <%= f.text_area :body,:class => "tinymce" %> %>
+    </p>
+    <p>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <%= f.hidden_field :in_character, :value => true %>
+      <%= f.submit "Create Comment", :id => "save-button" %>
+    </p>
+  <% end %>
+  <% @portal.comments.each do |comment| %>
+    <% if comment.in_character == true %>
+    <p>
+      <% if comment.user.character_name %>
+        <%= comment.user.character_name %>
+      <% else %>
+        <%= comment.user.first_name %>
+      <% end %>
+    </p>
+    <p>
+      <%= comment.body.html_safe %>
+    </p>
+    <% if comment.user == current_user %>
+    <%= link_to 'Delete Comment', 
+                         portal_comment_url(@portal, comment), 
+                         method: :delete,
+                         data: { confirm: 'Are you sure?' } %> 
+    <% end %> 
+    <% end %>
+  <% end %>
+
+</div>
+
+<%= tinymce %>
+

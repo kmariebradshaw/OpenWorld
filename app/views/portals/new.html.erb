@@ -1,14 +1,18 @@
 
 <%= form_for @portal do |form| %>
   <p>
-    <%= form.label :title %><br>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, :class =>"update_title", :placeholder =>"Title (Dr Cumberbunds Great Adventure)" %>
   </p>
- 
+
   <p>
-    <%= form.label :description %><br>
-    <%= form.text_area :description %>
+    <%= form.text_area :description, :class => "tinymce" %>
   </p>
+
+  <%= form.label :tags %>:<br>
+  <% @tags.each do |tag| %>
+    <%= check_box('tag[ids]', tag.id) %>
+      <%= form.label tag.name %><br>
+  <% end %>
 
   <p>
     <%= form.hidden_field :origin_id, :value => params[:origin] %>
@@ -17,3 +21,5 @@
     <%= form.submit %>
   </p>
 <% end %>
+<%= tinymce %>
+

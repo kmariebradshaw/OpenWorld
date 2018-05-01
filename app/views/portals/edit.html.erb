@@ -10,11 +10,18 @@
  
   <p>
     <%= form.label :description %><br>
-    <%= form.text_area :description %>
+    <%= form.text_area :description, rows: 5, cols: 25, :class => "tinymce" %> %>
   </p>
+
+    <%= form.label :tags %>:<br>
+  <% @tags.each do |tag| %>
+    <%= check_box('tags[ids]', tag.id, {checked: tag.assigned(@portal)}) %>
+    - <%= form.label tag.name %><br>
+  <% end %>
  
   <p>
     <%= form.submit %>
   </p>
  
 <% end %>
+<%= tinymce %>
