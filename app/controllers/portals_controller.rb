@@ -27,7 +27,9 @@ class PortalsController < ApplicationController
 
   def destroy
     @portal = Portal.find(params[:id])
+
     @portal.destroy
+
     redirect_to '/'
   end
   def update

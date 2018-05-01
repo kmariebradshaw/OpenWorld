@@ -1,29 +1,34 @@
 
-<h1>Edit</h1>
+<h1 style="text-align: center;">Edit Your Post</h1>
  
 <%= form_for @portal do |form| %>
-  
-  <p>
-    <%= form.label :title %><br>
-    <%= form.text_field :title %>
-  </p>
- 
-  <p>
-    <%= form.label :description %><br>
-    <%= form.text_area :description, rows: 5, cols: 25, :class => "tinymce" %> %>
+    <p>
+    <%= form.text_field :title, :class =>"update_title", :placeholder =>"Title - e.g. Dr Cumberbunds Great Adventure" %>
   </p>
 
+  <p>
+    <%= form.text_area :description, :class => "tinymce" %>
+  </p>
+  <div class="tags">
     <%= form.label :tags %>:<br>
   <% @tags.each do |tag| %>
     <%= check_box('tags[ids]', tag.id, {checked: tag.assigned(@portal)}) %>
     - <%= form.label tag.name %><br>
   <% end %>
+  </div>
+    <%= form.hidden_field :origin_id, :value => params[:origin] %>
+    <%= form.hidden_field :user_id, :value => current_user.id %>
+
+    <%= form.submit 'Submit' , :class => 'portal_submit'%>
+
+
+
  
-  <p>
-    <%= form.submit %>
-  </p>
+
+  <% end %>
  
-<% end %>
+
+
 <%= tinymce %>
 
 <style>
