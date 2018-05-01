@@ -1,3 +1,5 @@
+
+<div style="margin: 0 auto;width:fit-content;">
 <% @portals.each do |portal| %>
 	<% if portal.id == 1 %>
 		<ul id="origin">
@@ -14,23 +16,22 @@
 				<li class="user_links"><%= link_to "edit", edit_portal_path(portal) %> - <%= link_to 'delete', 
              portal_path(portal), 
                          method: :delete, 
-                         data: { confirm: 'Do you think this is a joke? Cause I will delete this and it will not come back.' } %> - <%= link_to 'add', "/portals/new?origin=#{portal.id}" %>
+                         data: { confirm: 'This works and will actually delete this, permanently. I cannot get it back. So, up to you.' } %></li>
 
 			<% end %>
 
 		</ul>
 <% end %>
+</div>
 
-
-
-<!-- pull out into partial -->
-<!-- next uls -->
 <style>
 	ul { 
 	 	list-style: none;
 	 	display: inline-block;
 	 	padding: 25px;
-	 	width: 150px;
+	 	width: 24%; 
+	 	box-sizing: border-box;
+	 	word-wrap: break-word;
 	 }
 
 

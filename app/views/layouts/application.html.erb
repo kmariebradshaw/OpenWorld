@@ -16,6 +16,8 @@
       <% if current_user %>
         <li><%= link_to "home", "/" %></li>
         <li><%= link_to "profile", "/users/#{current_user.id}"%></li>
+        <li><%= link_to 'new post', new_portal_path, :class=>"add_link" %></li>
+
       </ul>
       <% end %> 
     </nav>
