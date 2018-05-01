@@ -7,11 +7,19 @@
 		<ul class="">
 	<% end %>
 			<li><h1><%= link_to portal.title, portal_path(portal) %></h1></li>
-			<li class="themes">
-				<!-- for themes in portal.themes, little 100% border divs with color coded nonsense -->
+			<li class="tags">
+				<% portal.tags.each do |tag|%>
+					<%= tag.name %>
+				<% end %> 
 			</li>
-			<li><p><%= portal.description.first(80)%>...</p></li>
-			<li class="author"><%= portal.user.character_name %></li>
+			<li><p><%= portal.description.first(80).html_safe%>...</p></li>
+			<li class="author">
+				<% if portal.user.character_name %>
+				<%= portal.user.character_name %>
+				<% else %>
+				<%= portal.user.first_name %>
+				<% end %>	
+				</li>
 			<% if portal.user.id == current_user.id %>
 				<li class="user_links"><%= link_to "edit", edit_portal_path(portal) %> - <%= link_to 'delete', 
              portal_path(portal), 

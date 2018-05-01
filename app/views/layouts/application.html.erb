@@ -13,15 +13,13 @@
   <body>
     <nav>
       <ul>
+        <li><%= link_to image_tag("return.png"), :back, :class=>"return icons" %></li>
       <% if current_user %>
-      <% unless current_page?(root_path) %>
-        <li><%= link_to "home", "/" %></li>
+     <li><%= link_to image_tag("home.png"), "/", :class=>"icons"%></li>
+        <li><%= link_to image_tag("user.png"), "/users/#{current_user.id}", :class=>"icons"%></li>
+        <li><%= link_to image_tag("003-new-file.png"), new_portal_path, :class=>"icons" %></li>
       <% end %>
-        <li><%= link_to "profile", "/users/#{current_user.id}"%></li>
-        <li><%= link_to 'new post', new_portal_path, :class=>"add_link" %></li>
-
       </ul>
-      <% end %> 
     </nav>
   	  <p class="notice"><%= notice %></p>
        <p class="alert"><%= alert %></p>
