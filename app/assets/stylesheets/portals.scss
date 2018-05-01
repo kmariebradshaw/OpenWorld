@@ -37,6 +37,7 @@ display: inline-block;
 width: 100%;
 
 ul {
+min-width: 0;
 
     list-style: none;
     float: right;
@@ -56,6 +57,7 @@ nav ul li img {width: 25px;}
 .alert { 
     color: maroon;
     font-size: 8pt;
+    text-align: center;
  }
 
  .form_only {
