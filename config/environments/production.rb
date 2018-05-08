@@ -10,7 +10,7 @@ ActionMailer::Base.smtp_settings = {
   :user_name      => ENV['username'],
   :password       => ENV['password'],
   :authentication => :plain,
-}}
+}
 
 
   # Code is not reloaded between requests.
