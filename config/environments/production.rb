@@ -14,9 +14,9 @@ config.action_mailer.default :charset => "utf-8"
 ActionMailer::Base.smtp_settings = {
   :port           => 587,
   :address        => "smtp.mailgun.org",
-  :domain         => ENV['domain'],
-  :user_name      => ENV['username'],
-  :password       => ENV['password'],
+  :domain         => ENV['GMAIL_DOMAIN'],
+  :user_name      => ENV['GMAIL_USERNAME'],
+  :password       => ENV['GMAIL_PASSWORD'],
   :authentication => :plain,
 }
 
