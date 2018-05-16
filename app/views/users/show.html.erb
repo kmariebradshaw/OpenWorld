@@ -1,6 +1,67 @@
-<%= @user.email %> <br>
-<%= @user.first_name %> <br>
-<%= @user.character_name %> <br>
-<%= @user.character_description %> <br>
 
-<%= link_to 'edit', edit_user_registration_path %>
+<% if @user == current_user %>
+<div class="edit-nav">
+<%= link_to 'edit profile', edit_user_registration_path %>
+</div>
+<div class="profile-content">
+
+<section class="notes-drawer">
+	<p><em>only you can see this*</em></p>
+	<textarea>
+		
+	</textarea>
+</section>
+<% end %>
+ s
+<section class="character">
+<h1 style="margin-top: 0;"><%= @user.character_name %></h1> <br>
+<p><%= @user.character_description %></p><br>
+</section>
+</div>
+
+<% if @user.avatar %>
+<% @user.avatar.each do | avatar | %>
+	<%= avatar %>
+<% end %>
+<% end %>
+<!-- remaining hp -->
+<!-- dice roller slide in -->
+<!-- notes slide in -->
+<!-- notes persist -->
+<style>
+@media only screen and (min-width: 801px) {	
+	.notes-drawer textarea{ 
+    padding: 20px;
+    height: 80vh;
+    width: 200px;
+    margin: 0 auto;
+	}
+
+	.notes-drawer { width: 200px; }
+
+	.character {
+		width: 350px;
+		margin-left: 40px;
+	}
+	.profile-content {
+		margin-top: 20px;
+	}
+}
+
+.notes-drawer p { text-align: center; font-size: 8pt; }
+.notes-drawer, .character { 
+	display: inline-block;
+	vertical-align: top;
+
+}
+
+.notes-drawer textarea {
+	    box-sizing: border-box;
+    font-size: 12pt;
+    border: 2px solid black;
+}
+
+
+.edit-nav { float: right; }
+
+</style>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180501182916) do
+ActiveRecord::Schema.define(version: 20180515234042) do
 
   create_table "comments", force: :cascade do |t|
     t.string "body"
@@ -33,6 +33,10 @@ ActiveRecord::Schema.define(version: 20180501182916) do
     t.string "origin_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "prompts", force: :cascade do |t|
+    t.text "description"
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -66,6 +70,7 @@ ActiveRecord::Schema.define(version: 20180501182916) do
     t.text "character_description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "avatar"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
