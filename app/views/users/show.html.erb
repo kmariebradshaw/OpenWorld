@@ -4,6 +4,7 @@
 <%= link_to 'edit profile', edit_user_registration_path %>
 </div>
 <div class="profile-content">
+
 <section class="notes-drawer">
 	<p><em>only you can see this*</em></p>
 	<textarea>
@@ -11,11 +12,22 @@
 	</textarea>
 </section>
 <% end %>
+ s
 <section class="character">
 <h1 style="margin-top: 0;"><%= @user.character_name %></h1> <br>
 <p><%= @user.character_description %></p><br>
 </section>
 </div>
+
+<% if @user.avatar %>
+<% @user.avatar.each do | avatar | %>
+	<%= avatar %>
+<% end %>
+<% end %>
+<!-- remaining hp -->
+<!-- dice roller slide in -->
+<!-- notes slide in -->
+<!-- notes persist -->
 <style>
 @media only screen and (min-width: 801px) {	
 	.notes-drawer textarea{ 

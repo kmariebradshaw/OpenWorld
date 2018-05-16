@@ -1,49 +1,51 @@
 
-
 <div style="margin: 0 auto;width:100%;">
+		<ul class="origin">
+
 <% @portals.sort_by(&:created_at).reverse.each do |portal| %>
-	<% if portal.id == 1 %>
-		<ul id="origin">
-	<% else %>
 		<ul class="">
-	<% end %>
-			<li><h1><%= link_to portal.title, portal_path(portal) %></h1></li>
+			<li><h2><%= link_to portal.title, portal_path(portal) %></h2></li>
 			<li class="tags">
 				<% portal.tags.each do |tag|%>
-					<%= tag.name %>
+					<div class="tag_display <%= tag.name %>"></div>
 				<% end %> 
 			</li>
-			<li><p><%= portal.description.first(80).html_safe%>...</p></li>
 			<li class="author">
+				created by 
 				<% if portal.user.character_name %>
 				<%= portal.user.character_name %>
 				<% else %>
 				<%= portal.user.first_name %>
 				<% end %>	
+				on <%= portal.created_at.strftime('%D')
+ %>
 				</li>
 			<% if portal.user.id == current_user.id %>
 				<li class="user_links"><%= link_to "edit", edit_portal_path(portal) %> - <%= link_to 'delete', 
              portal_path(portal), 
                          method: :delete, 
-                         data: { confirm: 'This works and will actually delete this, permanently. I cannot get it back. So, up to you.' } %></li>
+                         data: { confirm: 'are you sure?' } %></li>
 
 			<% end %>
 
 		</ul>
 <% end %>
+</ul>
 </div>
 
 <style>
-	ul { 
+	ul  ul { 
 	 	list-style: none;
-	 	display: inline-block;
-	 	padding: 25px;
-	 	width: 24%; 
+	 	padding: 0px;
+	 	margin: 5px;
 	 	box-sizing: border-box;
 	 	word-wrap: break-word;
-	 	min-width: 250px;
+	 	vertical-align: top;
 	 }
 
+	 h2 a{ text-decoration: none }
+
+	 .origin { padding-left: 0; }
 
 	 .author { font-size: 9pt; }
 	 .user_links { margin-top: 10px; }
